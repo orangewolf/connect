@@ -1,0 +1,83 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container-fluid">
+  <div class="container">
+    <div class="image">
+      <%= image_tag @need.image.url(:medium) %>
+    </div>
+    <div class="row">
+      <div class="first_row">
+        <div class="col-md-4">
+          <h3>
+            <%= @need.title %>
+            <br><p>Wish List</p>
+          </h3>
+        </div>
+        <div class="col-md-4">
+          <p class='posted_date'>
+            <strong>Posted at:</strong>
+            <%= @need.posted_at %>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <p>
+          <strong>Description:</strong>
+          <%= @need.description %>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <p>
+          <strong>Amount requested:</strong>
+          <%= number_to_currency @need.amount_requested %>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <div class="progress">
+          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: <%= @need.percent_complete %>%;">
+            <%= number_to_currency @need.amount_donated %>
+          </div>
+        </div>
+        <p>
+          <%= number_to_currency @need.amount_donated %> funded to-date<br>
+          <%= number_to_currency (@need.amount_requested - @need.amount_donated) %> still needed
+        </p>
+      </div>
+      <div class="col-md-8">
+        <%= form_for(@donation, :url => new_donation_path, :method => :get) do |f| %>
+          <% if @donation.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@donation.errors.count, "error") %> prohibited this donation from being saved:</h2>
+
+              <ul>
+              <% @donation.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="field">
+            <%= f.label :amount %><br>
+            <%= f.select :amount, (1..50).collect { |i| 25*i}, {}, {:class => 'easyui-combobox'} %>
+          </div>
+          <%= f.hidden_field :need_id %>
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <% @need.users.each do |user| %>
+      <%= image_tag user.image.url(:medium) %>
+      <%= user.email %>
+    <% end %>
+
+
+
+
+  <%= link_to 'Edit', edit_need_path(@need) %> |
+  <%= link_to 'Back', needs_path %>
+  </div>
+</div>
