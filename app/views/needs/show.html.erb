@@ -2,10 +2,16 @@
 
 <div class="container-fluid">
   <div class="container">
-    <div class="image">
-      <%= image_tag @need.image.url(:medium) %>
-    </div>
     <div class="row">
+      <div class='col-md-4'>
+        <div class="image">
+          <%= image_tag @need.image.url(:medium) %>
+          <!-- Go to www.addthis.com/dashboard to customize your tools -->
+          <div class="addthis_sharing_toolbox"></div>
+        </div>
+
+      </div>
+
       <div class="first_row">
         <div class="col-md-4">
           <h3>
@@ -56,24 +62,32 @@
               </ul>
             </div>
           <% end %>
-
-          <div class="field">
-            <%= f.label :amount %><br>
-            <%= f.select :amount, (1..50).collect { |i| 25*i}, {}, {:class => 'easyui-combobox'} %>
-          </div>
-          <%= f.hidden_field :need_id %>
-          <div class="actions">
-            <%= f.submit %>
+          <div class='row'>
+            <div class='col-md-2 col-md-offset-6'>
+              <div class="field">
+                <%= f.select :amount, (1..50).collect { |i| 25*i}, {}, {:class => 'easyui-combobox'} %>
+              </div>
+            </div>
+            <div class='col-md-2'>
+              <%= f.hidden_field :need_id %>
+              <div class="actions">
+                <%= f.submit 'Donate', :class => 'btn btn-success btn-lg' %>
+              </div>
+            </div>
           </div>
         <% end %>
       </div>
     </div>
 
-    <% @need.users.each do |user| %>
-      <%= image_tag user.image.url(:medium) %>
-      <%= user.email %>
-    <% end %>
-
+    <div id='user-images' class='row'>
+      <% @need.users.each do |user| %>
+        <div class='col-md-2'>
+          <%= image_tag user.image.url(:thumb), width: '100' %>
+          <br />
+          <%= user.email %>
+        </div>
+      <% end %>
+    </div>
 
 
 
