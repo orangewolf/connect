@@ -82,7 +82,7 @@
     <div id='user-images' class='row'>
       <% @need.users.each do |user| %>
         <div class='col-md-2'>
-          <%= image_tag user.image.url(:thumb), width: '100' %>
+          <%= image_tag user.image_url, width: '100' %>
           <br />
           <%= user.email %>
         </div>

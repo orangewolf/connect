@@ -6,20 +6,30 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-  <div class='row'>
-    <div class='pull-right col-md-1'>
-      <% if user_signed_in? %>
-        <%= image_tag current_user.image.url(:thumb) %>
-        <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
-      <% else %>
-        <%= link_to 'Sign In', new_user_session_path %>
-      <% end %>
+<body
+
+
+
+      <div class='row'>
+        <div class='pull-right col-md-1'>
+          <% if user_signed_in? %>
+            <%= image_tag current_user.image_url %>
+            <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+          <% else %>
+            <%= link_to 'Sign In', new_user_session_path %>
+          <% end %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="">
+
+        </div>
+
+      </div>
     </div>
+    <%= yield %>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5010ab745b4bafa6" async="async"></script>
   </div>
-  <%= yield %>
-  <!-- Go to www.addthis.com/dashboard to customize your tools -->
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5010ab745b4bafa6" async="async"></script>
-  
 </body>
 </html>
