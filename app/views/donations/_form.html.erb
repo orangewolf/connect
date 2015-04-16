@@ -10,14 +10,31 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :amount %><br>
-    <%= f.select :amount, (1..50).collect { |i| 25*i}, {selected: @donation.amount.to_i}, {:class => 'easyui-combobox'} %>
+  <div class='row'>
+    <div class='col-md-8'>
+      <div id="dropin"></div>
+    </div>
   </div>
+  <div class='row'>
+    <div class="field col-md-4">
+      <%= f.label :amount %><br>
+      <%= f.select :amount, (1..50).collect { |i| 25*i}, {selected: @donation.amount.to_i}, {:class => 'easyui-combobox'} %>
+      <%= f.submit "Submit Donatation", :class => 'btn btn-primary' %>
+    </div>
+  </div>
+
   <%= f.hidden_field :need_id %>
   <%= f.hidden_field :user_id, :value => current_user.id %>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
+
+<script src="https://js.braintreegateway.com/v2/braintree.js"></script>
+
+<script>
+  braintree.setup(
+    // Replace this with a client token from your server
+    '<%= @client_token %>',
+    'dropin', {
+      container: 'dropin'
+    }
+  );
+</script>

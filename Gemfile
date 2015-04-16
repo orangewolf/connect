@@ -26,6 +26,7 @@ gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.4'
 gem "paperclip", "~> 4.2"
 gem 'omniauth-facebook'
+gem 'braintree'
 
 
 # Use ActiveModel has_secure_password

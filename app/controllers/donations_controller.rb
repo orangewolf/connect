@@ -17,6 +17,7 @@ class DonationsController < ApplicationController
   # GET /donations/new
   def new
     @donation = Donation.new(donation_params)
+    @client_token = Braintree::ClientToken.generate
   end
 
   # GET /donations/1/edit
@@ -26,10 +27,23 @@ class DonationsController < ApplicationController
   # POST /donations
   # POST /donations.json
   def create
+    @result = Braintree::Transaction.sale(
+        :amount => params[:donation][:amount],
+        :payment_method_nonce => params[:payment_method_nonce],
+        :options => {
+          :submit_for_settlement => true
+        }
+      )
     @donation = Donation.new(donation_params)
-
+    raise @result.errors.inspect unless @result.success?
     respond_to do |format|
-      if @donation.save
+      if @result.success? && @donation.save
+        if current_user
+          current_user.braintree_last_4               = @result.transaction.credit_card_details.last_4
+          current_user.braintree_payment_method_token = @result.transaction.credit_card_details.token
+          current_user.save
+        end
+
         format.html { redirect_to @donation.need, notice: 'Donation was successfully created.' }
         format.json { render :show, status: :created, location: @donation }
       else
@@ -71,6 +85,6 @@ class DonationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def donation_params
-      params.require(:donation).permit(:amount, :need_id, :user_id)
+      params.require(:donation).permit(:amount, :need_id, :user_id, :number, :cvv, :month, :year, :payment_method_nonce)
     end
 end
