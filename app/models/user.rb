@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "missing/:style.png"
+  has_attached_file :image, :styles => { :medium => "300x300#", :thumb => "100x100#" }, :default_url => "missing/:style.png"
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   validates :name, presence: true
 
@@ -19,11 +19,11 @@ class User < ActiveRecord::Base
     end
   end
 
-  def image_url
+  def image_url(size=:thumb)
     if self.facebook_image_url
       return self.facebook_image_url
     else
-      return self.image.url(:thumb)
+      return self.image.url(size)
     end
     # if fb image
     # else use image url (which will default to avatar)
