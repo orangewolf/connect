@@ -21,7 +21,11 @@ class User < ActiveRecord::Base
 
   def image_url(size=:thumb)
     if self.facebook_image_url
-      return self.facebook_image_url
+      if size == :medium
+        return self.facebook_image_url + "?type=large"
+      else
+        return self.facebook_image_url
+      end
     else
       return self.image.url(size)
     end
