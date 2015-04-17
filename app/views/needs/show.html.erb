@@ -63,7 +63,7 @@
           <div class='row'>
             <div class='col-md-2 col-md-offset-6'>
               <div class="field">
-                <%= f.select :amount, (1..50).collect { |i| 25*i}, {}, {:class => 'easyui-combobox'} %>
+                <%= f.select :amount, (1..50).collect { |i| ["#{number_to_currency(25*i, :precision => 0)}", 25*i]}, {}, {:class => 'easyui-combobox'} %>
               </div>
             </div>
             <div class='col-md-2'>
