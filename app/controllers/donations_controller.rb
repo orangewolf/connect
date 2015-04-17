@@ -28,7 +28,7 @@ class DonationsController < ApplicationController
   # POST /donations.json
   def create
     @result = Braintree::Transaction.sale(
-        :amount => params[:donation][:amount],
+        :amount => params[:donation][:amount].gsub('$', ''),
         :payment_method_nonce => params[:payment_method_nonce],
         :options => {
           :submit_for_settlement => true
