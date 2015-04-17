@@ -27,7 +27,7 @@ gem 'bootstrap-sass', '~> 3.3.4'
 gem "paperclip", "~> 4.2"
 gem 'omniauth-facebook'
 gem 'braintree'
-
+gem 'aws-sdk', '~> 1.5.7'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -41,7 +41,8 @@ gem 'braintree'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-
+  gem 'heroku_san'
+  gem 'httparty' , '0.13.3'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 

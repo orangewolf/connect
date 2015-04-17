@@ -40,6 +40,11 @@ GEM
     autoprefixer-rails (5.1.8.1)
       execjs
       json
+    aws-sdk (1.5.8)
+      httparty (~> 0.7)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -73,13 +78,24 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
     erubis (2.7.0)
+    excon (0.45.2)
     execjs (2.5.2)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
     hashie (3.4.1)
+    heroku-api (0.3.23)
+      excon (~> 0.44)
+      multi_json (~> 1.8)
+    heroku_san (4.3.2)
+      heroku-api (>= 0.1.2)
+      json
+      rake
     hike (1.2.3)
+    httparty (0.13.3)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     jbuilder (2.2.12)
       activesupport (>= 3.0.0, < 5)
@@ -203,6 +219,7 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    uuidtools (2.1.5)
     warden (1.2.3)
       rack (>= 1.0)
     web-console (2.1.2)
@@ -215,11 +232,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-sdk (~> 1.5.7)
   bootstrap-sass (~> 3.3.4)
   braintree
   byebug
   coffee-rails (~> 4.1.0)
   devise
+  heroku_san
+  httparty (= 0.13.3)
   jbuilder (~> 2.0)
   jquery-rails
   omniauth-facebook

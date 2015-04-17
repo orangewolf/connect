@@ -10,8 +10,12 @@
   <div class="container-fluid">
     <div class='row vertical-align'>
       <div class='col-xs-6 col-md-9'>
-        <% if current_organization %>
-          <%= image_tag current_organization.image.url %>
+        <%= link_to root_path do %>
+          <% if current_organization %>
+            <%= image_tag current_organization.image.url %>
+          <% else %>
+            <%= image_tag 'c2n-logo.png' %>
+          <% end %>
         <% end %>
       </div>
       <div class='col-xs-6 col-md-3'>
