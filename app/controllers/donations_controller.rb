@@ -1,7 +1,7 @@
 class DonationsController < ApplicationController
   before_action :set_donation, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-
+  before_action :ensure_admin, only: [:index, :edit, :update, :destroy, :show]
 
   # GET /donations
   # GET /donations.json

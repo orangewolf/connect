@@ -5,8 +5,12 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
-  def current_organization
-    Organization.first
+  def ensure_admin
+    unless current_user.present? && current_user.is_admin?
+      redirect_to root_path, alert: 'You are not authorized to do that.'
+    else
+      return true
+    end
   end
 
   protected
