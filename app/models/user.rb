@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "missing/:style.png"
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
-  validates :name, present: true
+  validates :name, presence: true
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
