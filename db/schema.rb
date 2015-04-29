@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150417044939) do
+ActiveRecord::Schema.define(version: 20150429152731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 20150417044939) do
     t.integer  "user_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "need_id"
+    t.string   "body"
+    t.datetime "sent_at"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "needs", force: :cascade do |t|
@@ -70,7 +79,6 @@ ActiveRecord::Schema.define(version: 20150417044939) do
     t.string   "uid"
     t.string   "name"
     t.string   "facebook_image_url"
-    t.string   "customer_id"
     t.string   "braintree_last_4"
     t.string   "braintree_payment_method_token"
     t.boolean  "is_admin",                       default: false
