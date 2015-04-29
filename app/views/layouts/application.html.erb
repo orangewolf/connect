@@ -35,6 +35,19 @@
     <% end %>
 
     <%= yield %>
+
+    <footer>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-2 col-md-offset-4">
+            &copy; 2014 - <%= Time.now.year %>
+          </div>
+          <div class="col-md-2">
+            <a href="fixlater">Terms of Use</a>
+          </div>
+        </div>
+      </div>
+    </footer>
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5010ab745b4bafa6" async="async"></script>
   </div>
