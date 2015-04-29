@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Connect</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class='row vertical-align'>
+      <div class='col-xs-6 col-md-9'>
+        <%= link_to root_path do %>
+          <% if current_organization %>
+            <%= image_tag current_organization.image.url %>
+          <% else %>
+            <%= image_tag 'c2n-logo.png' %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class='col-xs-6 col-md-3'>
+        <% if user_signed_in? %>
+          <%= image_tag current_user.image_url, :width => '20px' %>
+          <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+        <% else %>
+          <%= link_to 'Sign In', new_user_session_path %>
+        <% end %>
+      </div>
+    </div>
+    <% flash.each do |type, message| %>
+      <div class="alert <%= bootstrap_class_for(type) %> fade in">
+        <button class="close" data-dismiss="alert">×</button>
+        <%= message %>
+      </div>
+    <% end %>
+
+    <%= yield %>
+
+    <footer>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-2 col-md-offset-4">
+            &copy; 2014 - <%= Time.now.year %>
+          </div>
+          <div class="col-md-2">
+            <a href="fixlater">Terms of Use</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5010ab745b4bafa6" async="async"></script>
+  </div>
+</body>
+</html>

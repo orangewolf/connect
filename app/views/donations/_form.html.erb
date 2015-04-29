@@ -1,0 +1,41 @@
+<%= form_for(@donation) do |f| %>
+  <% if @donation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@donation.errors.count, "error") %> prohibited this donation from being saved:</h2>
+
+      <ul>
+      <% @donation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class='row'>
+    <div class='col-md-8'>
+      <div id="dropin"></div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class="col-md-6">
+      <%= f.select :amount, (1..50).collect { |i| ["#{number_to_currency(25*i, :precision => 0)}", 25*i]} + [number_to_currency(@donation.amount.to_i, :precision => 0)], {selected: number_to_currency(@donation.amount.to_i, :precision => 0)}, {:class => 'easyui-combobox'} %>
+    </div>
+    <div class="col-md-2">
+      <%= f.submit "Submit Donatation", :class => 'btn btn-primary' %>
+    </div>
+  </div>
+
+  <%= f.hidden_field :need_id %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+<% end %>
+
+<script src="https://js.braintreegateway.com/v2/braintree.js"></script>
+
+<script>
+  braintree.setup(
+    // Replace this with a client token from your server
+    '<%= @client_token %>',
+    'dropin', {
+      container: 'dropin'
+    }
+  );
+</script>

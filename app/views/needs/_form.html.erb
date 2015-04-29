@@ -1,0 +1,34 @@
+<%= form_for(@need, :html => { :multipart => true }) do |f| %>
+  <% if @need.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@need.errors.count, "error") %> prohibited this need from being saved:</h2>
+
+      <ul>
+      <% @need.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :posted_at %><br>
+    <%= f.datetime_select :posted_at %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :amount_requested %><br>
+    <%= f.text_field :amount_requested %>
+  </div>
+  <%= f.file_field :image %>
+  <div class="actions">
+    <%= f.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

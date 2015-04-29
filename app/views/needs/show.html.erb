@@ -1,0 +1,95 @@
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <div class='col-md-4'>
+        <div class="image">
+          <%= image_tag @need.image.url(:medium), :class => 'img-responsive' %>
+          <!-- Go to www.addthis.com/dashboard to customize your tools -->
+          <div class="addthis_sharing_toolbox"></div>
+        </div>
+
+      </div>
+
+      <div class="first_row">
+        <div class="col-md-4">
+          <h3>
+            <%= @need.title %>
+          </h3>
+        </div>
+        <div class="col-md-4">
+          <p class='posted_date'>
+            <strong>Posted:</strong>
+            <%= @need.posted_at.to_s(:long) %>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <p>
+          <strong>Description:</strong>
+          <%= @need.description %>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <p>
+          <strong>Amount requested:</strong>
+          <%= number_to_currency @need.amount_requested %>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <div class="progress">
+          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: <%= @need.percent_complete %>%;">
+            <%= number_to_currency @need.amount_donated %>
+          </div>
+        </div>
+        <p>
+          <%= number_to_currency @need.amount_donated %> funded to-date<br>
+          <%= number_to_currency (@need.amount_requested - @need.amount_donated) %> still needed
+        </p>
+      </div>
+      <div class="col-md-8">
+        <%= form_for(@donation, :url => new_donation_path, :method => :get) do |f| %>
+          <% if @donation.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@donation.errors.count, "error") %> prohibited this donation from being saved:</h2>
+
+              <ul>
+              <% @donation.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class='row'>
+            <div class='col-md-2 col-md-offset-6'>
+              <div class="field">
+                <%= f.select :amount, (1..50).collect { |i| ["#{number_to_currency(25*i, :precision => 0)}", 25*i]}, {}, {:class => 'easyui-combobox'} %>
+              </div>
+            </div>
+            <div class='col-md-2'>
+              <%= f.hidden_field :need_id %>
+              <div class="actions">
+                <%= f.submit 'Donate', :class => 'btn btn-success btn-lg' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div id='user-images' class='row'>
+      <% @need.users.uniq.each do |user| %>
+        <div class='col-md-2'>
+          <%= image_tag user.image_url(:medium), :class => 'img-responsive' %>
+          <br />
+          <%= user.name %>
+        </div>
+      <% end %>
+    </div>
+
+
+  <% if current_user && current_user.is_admin? %>
+    <%= link_to 'Edit', edit_need_path(@need) %>
+  <% end %>
+
+  </div>
+</div>
