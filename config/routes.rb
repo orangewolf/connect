@@ -11,6 +11,10 @@ Rails.application.routes.draw do
 
   root 'needs#show', :id => 1
 
+  get 'pages/terms'
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
