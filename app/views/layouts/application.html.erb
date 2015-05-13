@@ -7,52 +7,58 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="container-fluid">
-    <div class='row vertical-align'>
-      <div class='col-xs-6 col-md-9'>
-        <%= link_to root_path do %>
-          <% if current_organization %>
-            <%= image_tag current_organization.image.url %>
-          <% else %>
-            <%= image_tag 'c2n-logo.png' %>
-          <% end %>
-        <% end %>
-      </div>
-      <div class='col-xs-6 col-md-3'>
-        <% if user_signed_in? %>
-          <%= image_tag current_user.image_url, :width => '20px' %>
-          <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %><br><br>
-            <% if current_user.is_admin? %>
-              <%= link_to 'New Message', new_message_path %>
+  <div id="wrap">
+    <header class="container-fluid">
+      <div class='row vertical-align'>
+        <div class='col-xs-6 col-md-9'>
+          <%= link_to root_path do %>
+            <% if current_organization %>
+              <%= image_tag current_organization.image.url %>
+            <% else %>
+              <%= image_tag 'c2n-logo.png' %>
             <% end %>
-        <% else %>
-          <%= link_to 'Sign In', new_user_session_path %>
-        <% end %>
-      </div>
-    </div>
-    <% flash.each do |type, message| %>
-      <div class="alert <%= bootstrap_class_for(type) %> fade in">
-        <button class="close" data-dismiss="alert">×</button>
-        <%= message %>
-      </div>
-    <% end %>
-
-    <%= yield %>
-
-    <footer>
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-2 col-md-offset-4">
-            &copy; 2014 - <%= Time.now.year %>
-          </div>
-          <div class="col-md-2">
-            <a href="/pages/terms">Terms of Use</a>
-          </div>
+          <% end %>
+        </div>
+        <div class='col-xs-6 col-md-3'>
+          <% if current_user.is_admin? %>
+            <%= link_to new_message_path do %>
+              <span><i class='glyphicon glyphicon-envelope'></i></span> Send Message
+            <% end %>
+          <% end %>
+          <% if user_signed_in? %>
+            <%= image_tag current_user.image_url, :width => '20px' %>
+            <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+          <% else %>
+            <%= link_to 'Sign In', new_user_session_path %>
+          <% end %>
         </div>
       </div>
-    </footer>
+    </header>
+    <div class="container-fluid">
+      <% flash.each do |type, message| %>
+        <div class="alert <%= bootstrap_class_for(type) %> fade in">
+          <button class="close" data-dismiss="alert">×</button>
+          <%= message %>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    </div>
+  </div>
+
+  <footer id='footer'>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2 col-md-offset-4">
+          &copy; 2014 - <%= Time.now.year %> Connect2Need
+        </div>
+        <div class="col-md-2">
+          <a href="/pages/terms">Terms of Use</a>
+        </div>
+      </div>
+    </div>
+  </footer>
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5010ab745b4bafa6" async="async"></script>
-  </div>
 </body>
 </html>

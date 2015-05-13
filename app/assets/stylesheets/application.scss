@@ -10,6 +10,7 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require bootstrap-wysihtml5
  *= require_tree .
  *= require_self
  */
@@ -39,5 +40,37 @@ div.vertical-align {
 }
 
 .btn {
-  height:45px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.wysihtml5-toolbar .btn {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.wysihtml5 {
+  width: 80%;
+  border: 1px solid #ccc;
+}
+
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
+
+/* Set the fixed height of the footer here */
+#footer {
+  height: 30px;
 }

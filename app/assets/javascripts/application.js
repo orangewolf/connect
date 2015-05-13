@@ -14,5 +14,16 @@
 //= require jquery_ujs
 //= require jquery.easyui.min
 //= require bootstrap
+//= require bootstrap-wysihtml5
+//= require bootstrap-wysihtml5/locales
 //= require turbolinks
 //= require_tree .
+
+
+$(document).ready(function(){
+
+  $('.wysihtml5').each(function(i, elem) {
+    $(elem).wysihtml5();
+  });
+
+})
