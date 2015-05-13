@@ -12,3 +12,4 @@ public/system/*
 /log/*
 !/log/.keep
 /tmp
+config/heroku.yml
