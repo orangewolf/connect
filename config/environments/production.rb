@@ -78,11 +78,17 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   require 'braintree'
-  Braintree::Configuration.environment = :sandbox
+  # Braintree::Configuration.environment = :sandbox
+  # #Braintree::Configuration.logger = Logger.new('log/braintree.log')
+  # Braintree::Configuration.merchant_id = "mwzyb7nrf8mpf8xh"
+  # Braintree::Configuration.public_key = "2fst3wjwjr6ggstc"
+  # Braintree::Configuration.private_key = "00cc35bcc61ef7d5d3e3b854b3583191"
+
+  Braintree::Configuration.environment = :production
   #Braintree::Configuration.logger = Logger.new('log/braintree.log')
-  Braintree::Configuration.merchant_id = "mwzyb7nrf8mpf8xh"
-  Braintree::Configuration.public_key = "2fst3wjwjr6ggstc"
-  Braintree::Configuration.private_key = "00cc35bcc61ef7d5d3e3b854b3583191"
+  Braintree::Configuration.merchant_id = ENV['BRAINTREE_MERCHANT']
+  Braintree::Configuration.public_key = ENV['BRAINTREE_PUBLIC_KEY']
+  Braintree::Configuration.private_key = ENV['BRAINTREE_PRIVATE_KEY']
 
   config.paperclip_defaults = {
     :storage => :s3,
