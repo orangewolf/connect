@@ -17,7 +17,7 @@
   </div>
   <div class='row'>
     <div class="col-md-6">
-      <%= f.select :amount, (1..50).collect { |i| ["#{number_to_currency(25*i, :precision => 0)}", 25*i]} + [number_to_currency(@donation.amount.to_i, :precision => 0)], {selected: number_to_currency(@donation.amount.to_i, :precision => 0)}, {:class => 'easyui-combobox'} %>
+      <%= f.select :amount, amount_list(@donation.amount.to_i), {selected: number_to_currency(@donation.amount.to_i, :precision => 0)}, {:class => 'easyui-combobox'} %>
     </div>
     <div class="col-md-2">
       <%= f.submit "Submit Donatation", :class => 'btn btn-primary' %>
