@@ -1,5 +1,5 @@
 class AdminMailer < ApplicationMailer
-  default from: "genevieve@example.com"
+  default from: "fundraiser@connect2need.com"
 
   def sample_email(user)
     @user = user
