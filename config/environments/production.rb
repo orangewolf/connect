@@ -99,4 +99,16 @@ Rails.application.configure do
     }
   }
 
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.default_url_options = { :host => 'fundraiser.connect2need.com' }
+  config.action_mailer.smtp_settings = {
+    :address        => "smtp.sendgrid.net",
+    :port           => "25",
+    :authentication => :plain,
+    :user_name      => "app35955340@heroku.com",
+    :password       => "lb4ktlqh9359",
+    :domain         => "fundraiser.connect2need.com"
+  }
+
 end
