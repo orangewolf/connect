@@ -5,7 +5,11 @@ class Message < ActiveRecord::Base
 
   def send_email
     need.users.each do |user|
-      AdminMailer.message_email(self, user).deliver
+      begin
+        AdminMailer.message_email(self, user).deliver
+      rescue
+      end
     end
+    return true
   end
 end

@@ -11,7 +11,7 @@ class Donation < ActiveRecord::Base
   end
 
   def amount=(value)
-    value.gsub!('$', '')
+    value.to_s.gsub!('$', '')
     super(value)
   end
 end
