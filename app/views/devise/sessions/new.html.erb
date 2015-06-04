@@ -68,7 +68,12 @@
           <%= f.password_field :password_confirmation, autocomplete: "off" %>
         </div>
 
-        <%= f.file_field :image %>
+        <div class="field">
+          <%= f.label :image, 'User Photo' %><br />
+          <%= f.file_field :image %>
+        </div>
+
+
         <br>
 
 
