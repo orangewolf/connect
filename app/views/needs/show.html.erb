@@ -78,7 +78,7 @@
 
     <div id='user-images' class='row'>
       <% @need.users.uniq.each do |user| %>
-      <div class='col-md-2'>
+      <div class='col-md-2 user-image'>
         <%= image_tag user.image_url(:medium), :class => 'img-responsive' %>
         <br />
         <%= user.name %>
