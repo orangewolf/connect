@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   before_action :ensure_admin, only: [:index, :create, :new, :destroy, :show]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
       params[:user].delete(:password)
       params[:user].delete(:password_confirmation)
     end
-    
+
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to edit_user_path(@user), notice: 'User was successfully updated.' }
