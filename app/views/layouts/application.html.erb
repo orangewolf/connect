@@ -26,8 +26,11 @@
                 <span><i class='glyphicon glyphicon-envelope'></i></span> Send Message
               <% end %>
             <% end %>
-            <%= image_tag current_user.image_url, :width => '20px' %>
+            |
+            <%= link_to 'Update Profile', edit_user_path(current_user) %>
+            |
             <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+            <%= image_tag current_user.image_url, :width => '20px' %>
           <% else %>
             <%= link_to 'Sign In', new_user_session_path %>
           <% end %>
