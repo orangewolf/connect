@@ -76,13 +76,18 @@
       </div>
     </div>
 
-    <div id='user-images' class='row'>
-      <% @need.users.uniq.each do |user| %>
-      <div class='col-md-2 user-image'>
-        <%= image_tag user.image_url(:medium), :class => 'img-responsive' %>
-        <br />
-        <%= user.name %>
-      </div>
+    <div id='user-images'>
+      <% @need.users.uniq.in_groups_of(6) do |group| %>
+        <div class='row'>
+          <% group.each do |user| %>
+            <% next unless user %>
+            <div class='col-md-2 user-image'>
+              <%= image_tag user.image_url(:medium), :class => 'img-responsive' %>
+              <br />
+              <%= user.name %>
+            </div>
+          <% end %>
+        </div>
       <% end %>
     </div>
 
