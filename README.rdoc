@@ -32,3 +32,13 @@ Things you may want to cover:
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
+
+require 'csv'
+csv_string = CSV.generate do |csv|
+  csv << ["Name", "Email", "Amount", "Date"]
+  Donation.all.each do |donation|
+    name = donation.user ? donation.user.name : 'No Name'
+    email = donation.user ? donation.user.email : 'No Email'
+    csv << [name, email, donation.amount, donation.created_at.to_s(:short)]
+  end
+end
