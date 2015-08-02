@@ -4,6 +4,6 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <%= @message.body.html_safe %>
+    Please view this message at <%= message_path(@message) %>
   </body>
 </html>
