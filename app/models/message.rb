@@ -4,12 +4,13 @@ class Message < ActiveRecord::Base
   belongs_to :user
 
   def send_email
-    need.users.each do |user|
+    # need.users.each do |user|
+    user = User.where(email: 'rob@notch8.com').first
       begin
         AdminMailer.message_email(self, user).deliver
       rescue
       end
-    end
+    # end
     return true
   end
 end
