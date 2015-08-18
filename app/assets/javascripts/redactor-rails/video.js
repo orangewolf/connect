@@ -50,7 +50,8 @@ if (!RedactorPlugins) var RedactorPlugins = {};
 
 					if (data.match(this.video.reUrlYoutube))
 					{
-						data = data.replace(this.video.reUrlYoutube, iframeStart + '//www.youtube.com/embed/$1' + iframeEnd);
+						videoUrl = data.replace(this.video.reUrlYoutube, '$1');
+						data = '<a title="click to play" href="https://www.youtube.com/watch?v=' + videoUrl + '"><img src="https://i.ytimg.com/vi/' + videoUrl + '/hqdefault.jpg"></a>'
 					}
 					else if (data.match(this.video.reUrlVimeo))
 					{
