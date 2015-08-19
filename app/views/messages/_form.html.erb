@@ -20,6 +20,13 @@
     <%= f.text_area :body, :class => "redactor", :rows => 40, :cols => 120  %>
   </div>
 
+  <div class='field'>
+    <%= f.fields_for(:sent_messages) do |sent_fields| %>
+      <%= sent_fields.label :user_id, sent_fields.object.user.name %>
+      <%= sent_fields.check_box :user_id, {}, sent_fields.object.user_id %>
+    <% end %>
+  </div>
+
   <div class="actions">
     <%= f.submit 'Send', class: 'btn btn-primary' %>
   </div>
