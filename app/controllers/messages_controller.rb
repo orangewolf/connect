@@ -24,6 +24,10 @@ class MessagesController < ApplicationController
 
   # GET /messages/1/edit
   def edit
+    @need = @message.need
+    @need.users.each do |user|
+      @message.sent_messages.build(user_id: user.id)
+    end
   end
 
   # POST /messages
@@ -50,6 +54,9 @@ class MessagesController < ApplicationController
         format.html { redirect_to @message, notice: 'Message was successfully updated.' }
         format.json { render :show, status: :ok, location: @message }
       else
+        @need = @message.need
+        @message.sent_messages = @message.sent_messages.reject {|message| message.user.blank?}
+
         format.html { render :edit }
         format.json { render json: @message.errors, status: :unprocessable_entity }
       end

@@ -40,7 +40,6 @@ Rails.application.configure do
   #put stuff here
 
   config.action_mailer.delivery_method = :smtp
-
   config.action_mailer.smtp_settings = {
                                           :user_name => 'c2n',
                                           :password => '847350cbd49e5230',

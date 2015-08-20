@@ -14,7 +14,7 @@
           <div class='pull-right'>
             <% if user_signed_in? %>
               <% if current_user.is_admin? %>
-                <%= link_to new_message_path do %>
+                <%= link_to messages_path do %>
                   <span><i class='glyphicon glyphicon-envelope'></i></span> Send Message
                 <% end %>
               <% end %>
