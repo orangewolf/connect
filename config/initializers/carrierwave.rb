@@ -5,7 +5,7 @@ CarrierWave.configure do |config|
     config.enable_processing = false
     config.root = "#{Rails.root}/tmp"
   else
-    # master only config.fog_provider = 'fog/aws'
+    config.fog_provider = 'fog/aws'
     config.fog_credentials = {
       # Configuration for Amazon S3
       :provider              => 'AWS',
