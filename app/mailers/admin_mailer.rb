@@ -7,7 +7,7 @@ class AdminMailer < ApplicationMailer
   end
 
   def message_email(message, user)
-    attachments.inline['logo.png'] = File.read(Organization.first.image.path)
+    # attachments.inline['logo.png'] = File.read(Organization.first.image.path)
 
     @message = message
     @user = user
