@@ -14,11 +14,11 @@
 //= require jquery_ujs
 //= require jquery.easyui.min
 //= require bootstrap
-//= require_tree .
 //= require redactor-rails
 //= require redactor-rails/plugins
 //= require redactor-rails/video
 //= require redactor-rails/config
+//= require_tree .
 
 
 $(document).ready(function(){
