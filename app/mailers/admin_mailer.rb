@@ -11,6 +11,6 @@ class AdminMailer < ApplicationMailer
 
     @message = message
     @user = user
-    mail(to: @user.email, subject: "Status update for #{message.need.title}")
+    mail(to: @user.email, subject: @message.subject)
   end
 end

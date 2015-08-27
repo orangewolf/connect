@@ -5,4 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Need.create title: "Need1", amount_requested: 1000000, posted_at: Time.now
+Need.create title: "Need1", amount_requested: 1000000, posted_at: Time.now, description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod"
+User.create name: "User1", email: "rob@notch8.com", password: "testing123", is_admin: true
