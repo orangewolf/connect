@@ -30,6 +30,7 @@
       <div class='check_box'>
         <%= sent_fields.check_box :user_id, {disabled: !!sent_fields.object.sent_at}, sent_fields.object.user_id %>
         <%= sent_fields.label :user_id, sent_fields.object.user.name %>
+        <%= sent_fields.label :user_id, sent_fields.object.user.email %>
       </div>
     <% end %>
   </div>
