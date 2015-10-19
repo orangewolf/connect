@@ -1,16 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe "users/index", type: :view do
+RSpec.describe "donors/index", type: :view do
   before(:each) do
-    assign(:users, [
-      User.create!(
+    assign(:donors, [
+      Donor.create!(
         :name => "Name",
         :image => "",
         :email => "Email",
         :password => "Password",
         :password_confirmation => "Password Confirmation"
       ),
-      User.create!(
+      Donor.create!(
         :name => "Name",
         :image => "",
         :email => "Email",
@@ -20,7 +20,7 @@ RSpec.describe "users/index", type: :view do
     ])
   end
 
-  it "renders a list of users" do
+  it "renders a list of donors" do
     render
     assert_select "tr>td", :text => "Name".to_s, :count => 2
     assert_select "tr>td", :text => "".to_s, :count => 2

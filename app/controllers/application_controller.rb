@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   def ensure_admin
-    unless current_user.present? && current_user.is_admin?
+    unless current_donor.present? && current_donor.is_admin?
       redirect_to root_path, alert: 'You are not authorized to do that.'
     else
       return true

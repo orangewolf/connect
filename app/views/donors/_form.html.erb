@@ -1,11 +1,11 @@
 <div class='row'>
-  <%= form_for(@user) do |f| %>
-    <% if @user.errors.any? %>
+  <%= form_for(@donor) do |f| %>
+    <% if @donor.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+        <h2><%= pluralize(@donor.errors.count, "error") %> prohibited this donor from being saved:</h2>
 
         <ul>
-        <% @user.errors.full_messages.each do |message| %>
+        <% @donor.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
         </ul>
@@ -39,8 +39,8 @@
     </div>
     <div class='col-md-5 col-md-offset-1'>
       <div class="form-group">
-        <%= f.label :image, 'User Photo' %><br />
-        <%= image_tag @user.image_url(:medium), :class => 'img-responsive' %>
+        <%= f.label :image, 'Donor Photo' %><br />
+        <%= image_tag @donor.image_url(:medium), :class => 'img-responsive' %>
         <%= f.file_field :image %>
       </div>
 

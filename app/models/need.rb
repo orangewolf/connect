@@ -1,6 +1,6 @@
 class Need < ActiveRecord::Base
   has_many :donations
-  has_many :users, :through => :donations
+  has_many :donors, :through => :donations
   belongs_to :organizations
 
   has_attached_file :image, :styles => { :medium => "300x300#", :thumb => "100x100#" }, :default_url => "/images/:style/missing.png"

@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class Donor < ActiveRecord::Base
   has_many :donations
   has_many :sent_messages
   # Include default devise modules. Others available are:
@@ -12,11 +12,11 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-      user.name = auth.info.name   # assuming the user model has a name
-      user.facebook_image_url = auth.info.image # assuming the user model has an image
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |donor|
+      donor.email = auth.info.email
+      donor.password = Devise.friendly_token[0,20]
+      donor.name = auth.info.name   # assuming the donor model has a name
+      donor.facebook_image_url = auth.info.image # assuming the donor model has an image
     end
   end
 
