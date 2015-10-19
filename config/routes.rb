@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :donors
 
-  root 'needs#show', :id => 1
+  root 'needs#show', id: 1
 
   get 'pages/terms'
 end
