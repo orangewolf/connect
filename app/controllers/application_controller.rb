@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_organization
+    Organization.first
+  end
+
   protected
 
   def configure_permitted_parameters
