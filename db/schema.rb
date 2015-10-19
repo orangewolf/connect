@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 20151019220901) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "access_code"
   end
 
   create_table "redactor_assets", force: :cascade do |t|
