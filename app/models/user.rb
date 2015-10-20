@@ -1,12 +1,14 @@
 class User < ActiveRecord::Base
+  belongs_to :organization
   has_many :donations
   has_many :sent_messages
+  has_many :needs
   
   rolify
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
   belongs_to :organization
   attr_accessor :access_code
 
