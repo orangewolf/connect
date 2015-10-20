@@ -1,7 +1,7 @@
 class Need < ActiveRecord::Base
   has_many :donations
   has_many :donors, :through => :donations
-  belongs_to :organizations
+  belongs_to :organization
 
   extend FriendlyId
   friendly_id :title, use: :slugged
