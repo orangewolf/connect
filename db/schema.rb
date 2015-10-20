@@ -11,25 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151019225654) do
+ActiveRecord::Schema.define(version: 20151020172929) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "active_admin_comments", force: :cascade do |t|
-    t.string   "namespace"
-    t.text     "body"
-    t.string   "resource_id",   null: false
-    t.string   "resource_type", null: false
-    t.integer  "author_id"
-    t.string   "author_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
-  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
-  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
   create_table "donations", force: :cascade do |t|
     t.decimal  "amount",     precision: 10, scale: 2
@@ -81,20 +66,6 @@ ActiveRecord::Schema.define(version: 20151019225654) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
-
-  create_table "html_diffs", force: :cascade do |t|
-    t.integer  "work_program_id"
-    t.text     "params"
-    t.text     "diff",            default: ""
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.text     "to"
-    t.text     "from"
-    t.string   "to_sha"
-    t.string   "from_sha"
-  end
-
-  add_index "html_diffs", ["work_program_id"], name: "index_html_diffs_on_work_program_id", using: :btree
 
   create_table "messages", force: :cascade do |t|
     t.integer  "need_id"
@@ -150,19 +121,6 @@ ActiveRecord::Schema.define(version: 20151019225654) do
   add_index "redactor_assets", ["assetable_type", "assetable_id"], name: "idx_redactor_assetable", using: :btree
   add_index "redactor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_redactor_assetable_type", using: :btree
 
-  create_table "references", force: :cascade do |t|
-    t.date     "date"
-    t.string   "title"
-    t.string   "status"
-    t.string   "publisher"
-    t.string   "author"
-    t.string   "href"
-    t.string   "edDraft"
-    t.string   "key"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.integer  "resource_id"
@@ -208,29 +166,5 @@ ActiveRecord::Schema.define(version: 20151019225654) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
-
-  create_table "work_programs", force: :cascade do |t|
-    t.string  "name"
-    t.string  "repository_url"
-    t.integer "working_area_id"
-    t.string  "default_branch"
-  end
-
-  add_index "work_programs", ["working_area_id"], name: "index_work_programs_on_working_area_id", using: :btree
-
-  create_table "working_areas", force: :cascade do |t|
-    t.string  "name"
-    t.string  "description"
-    t.integer "working_group_id"
-  end
-
-  add_index "working_areas", ["working_group_id"], name: "index_working_areas_on_working_group_id", using: :btree
-
-  create_table "working_groups", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "key"
-  end
 
 end
