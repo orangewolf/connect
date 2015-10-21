@@ -64,12 +64,10 @@ class NeedsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_need
-      @need = Need.find(params[:id])
+      @need = Need.friendly.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def need_params
       params.require(:need).permit(:title, :posted_at, :description, :amount_requested, :image)
     end
