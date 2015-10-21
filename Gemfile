@@ -2,9 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.0'
 
-gem "carrierwave"
-gem "fog"
-gem "mini_magick"
 gem 'auto_tagger', :require => false
 gem 'aws-sdk', '~> 1.5.7'
 gem 'bootstrap-sass', '~> 3.3.4'
@@ -20,7 +17,6 @@ gem 'jquery-rails'
 gem 'mini_magick'
 gem 'omniauth-facebook'
 gem 'paperclip', '~> 4.2'
-gem 'pg'
 gem 'pg'
 gem 'rails_12factor', group: :production
 gem 'redactor-rails'

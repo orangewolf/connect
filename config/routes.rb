@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   resources :donors
 
+  resources :users
+
   root 'needs#show', id: 1
 
   get 'pages/terms'

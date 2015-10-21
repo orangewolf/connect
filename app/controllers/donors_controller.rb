@@ -71,11 +71,7 @@ class DonorsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_donor
-      if current_donor.is_admin?
-        @donor = Donor.find(params[:id])
-      else
-        @donor = current_donor
-      end
+      @donor = current_donor
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
